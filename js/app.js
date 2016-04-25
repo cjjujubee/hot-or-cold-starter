@@ -1,6 +1,4 @@
 // Model
-
-
 var Model = function () {
     this.onChange = null;
     this.guesses = [];
@@ -61,16 +59,36 @@ Model.prototype.newGame = function(){
     this.guessCounter = 0;
     this.computeMysteryNumber();
 };
-//
- var model = new Model();
 
 
-/*View
- -event listener
+//View
+var GuessView = function(selector) {
+  this.list = $(selector);
+}
 
+GuessView.prototype.render = function(guesses) {
+  var guessesHTML = guesses.map(function(guesses) {
+    return "<li>" + guesses + "</li>";
+  });
 
+  this.list.html(guessesHTML);
+}
 
- */
+var GuessCounter = function(selector) {
+  this.counter = $(selector);
+}
+
+GuessCounter.prototype.render = function(count) {
+  this.counter.html(count);
+};
+
+var GuessDistance = function(selector) {
+  this.feedback = $(selector);
+}
+
+GuessDistance.prototype.render = function(guess) {
+  this.feedback.html
+}
 
 
 // Controller
@@ -79,7 +97,10 @@ Model.prototype.newGame = function(){
 
 
 $(document).ready(function () {
-
+  var model = new Model();
+  var guessView = new GuessView('#guessList');
+  var guessCounter = new GuessCounter('#count');
+  model.newGame();
 //     /*--- Display information modal box ---*/
 //     $(".what").click(function () {
 //         $(".overlay").fadeIn(1000);
