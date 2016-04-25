@@ -1,3 +1,21 @@
+// Model
+
+
+//
+
+
+/*View 
+-event listener
+
+
+
+*/
+
+
+// Controller 
+
+//
+
 
 $(document).ready(function(){
 	
@@ -16,25 +34,35 @@ $(document).ready(function(){
   var guesses = 0;
   var computerAnswer = computeRandomAnswer();
 
+//lines 47-51 -- MODEL
   function computeRandomAnswer() {
     var numberGenerated = Math.round(randomRange(1, 100));
     console.log(numberGenerated);
     return numberGenerated;
   }
 
-  $(".new").click(function(event){
+  $(".new").click(function(event){ //view
     event.preventDefault();
-    guesses = 0;
+    guesses = 0; // model
+    
+//view
     $('#count').text(guesses);
     $('.guessBox').empty();
     $('#feedback').text('Make your Guess!');
-    computerAnswer = computeRandomAnswer();
     $('#guessButton').prop('disabled', false);
+//model
+    computerAnswer = computeRandomAnswer(); 
   });
+
+
+
+
+
 
   $('.hotOrCold').submit(function(event) {
     event.preventDefault();
     
+    //lines 73-115 --VIEW
     var something = parseInt($('#userGuess').val());
     $('#userGuess').closest('form')[0].reset();
 
@@ -48,8 +76,10 @@ $(document).ready(function(){
       $('#feedback').text('We can only accept 1-100!');
     }
     /*Handles valid inputs*/
+
     else{
       /*Adds entered number into list */
+      
       $('.guessBox').append("<li>" + something + "</li>");
       guesses++
       $('#count').text(guesses);
