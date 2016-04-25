@@ -9,7 +9,7 @@ var Model = function () {
 };
 
 Model.prototype.computeMysteryNumber = function () {
-    this.mysteryNumber = Math.round(randomRange(1, 100));
+    this.mysteryNumber = Math.floor((Math.random()*100) + 1);
 };
 
 
@@ -36,7 +36,6 @@ Model.prototype.hotOrCold = function (userGuess) {
     }
     else if (distance === 0) {
         console.log("There's the answer! Let's play again!");
-        $('#guessButton').prop('disabled', true);
     }
 };
 
@@ -56,11 +55,17 @@ Model.prototype.checkUserGuess = function (userGuess) {
     }
 };
 
-
+Model.prototype.newGame = function(){
+    this.onChange = null;
+    this.guesses = [];
+    this.guessCounter = 0;
+    this.mysteryNumber = 0;
+};
 //
+ var model = new Model();
 
 
-/*View 
+/*View
  -event listener
 
 
@@ -68,7 +73,7 @@ Model.prototype.checkUserGuess = function (userGuess) {
  */
 
 
-// Controller 
+// Controller
 
 //
 
